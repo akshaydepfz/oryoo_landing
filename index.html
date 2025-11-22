@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oryoo - The CRM for Indian Business Owners</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        bg: '#E9EBF4',
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'marquee': 'marquee 30s linear infinite',
+                        'blob': 'blob 7s infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'typewriter': 'typewriter 2s steps(20) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        typewriter: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .bg-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Store Button Styling */
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #0f172a;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, #2dd4bf, #0d9488);
+            z-index: 100;
+            transition: width 0.1s;
+        }
+
+        /* 3D Hover Tilt Effect */
+        .hover-tilt {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-tilt:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
+        }
+    </style>
+</head>
+
+<body class="bg-bg text-slate-800 antialiased overflow-x-hidden relative selection:bg-teal-200 selection:text-teal-900"
+    x-data="{ scroll: 0 }"
+    @scroll.window="scroll = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100">
+
+    <div class="scroll-progress" :style="'width: ' + scroll + '%'"></div>
+
+    <div class="bg-grain"></div>
+
+    <nav class="fixed top-6 left-0 right-0 z-[60] flex justify-center px-4" data-aos="fade-down">
+        <div
+            class="glass-panel px-6 py-3 rounded-full flex items-center gap-8 shadow-lg shadow-black/5 transition hover:shadow-xl">
+            <a href="#" class="text-xl font-bold text-teal-800 flex items-center gap-2">
+                <div class="w-6 h-6 bg-gradient-to-tr from-teal-400 to-teal-600 rounded-md animate-pulse-slow"></div>
+                Oryoo
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="#problems" class="hover:text-teal-600 transition">Why Oryoo?</a>
+                <a href="#features" class="hover:text-teal-600 transition">Features</a>
+                <a href="#pricing" class="hover:text-teal-600 transition">Pricing</a>
+            </div>
+            <button
+                class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
+                Get App
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative pt-40 pb-12 lg:pt-48 lg:pb-20 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden -z-10">
+            <div
+                class="absolute top-20 left-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+            </div>
+            <div
+                class="absolute top-40 right-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-teal-100 text-teal-700 text-xs font-bold tracking-wide uppercase mb-6 shadow-sm hover:scale-105 transition">
+                    <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                    Simple CRM for Small Business
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-[1.1]">
+                    Manage Clients. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-500">Track
+                        Money.</span><br>
+                    <span class="relative inline-block">
+                        Zero Stress.
+                        <span
+                            class="absolute bottom-2 left-0 w-full h-3 bg-teal-200 -z-10 opacity-60 rounded-full"></span>
+                    </span>
+                </h1>
+                <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-lg">
+                    Stop using notebooks and messy WhatsApp chats. Oryoo helps you track orders, send payment reminders,
+                    and grow your business in one simple app.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="#" class="store-btn">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.54,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                        </svg>
+                        <div class="text-left">
+                            <div class="text-[10px] uppercase font-semibold opacity-80">Get it on</div>
+                            <div class="text-lg font-bold leading-none">Google Play</div>
+                        </div>
+                    </a>
+                    <a href="#" class="store-btn bg-white text-slate-900 border border-slate-200 hover:bg-slate-50">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" />
+                        </svg>
+                        <div class="text-left">
+                            <div class="text-[10px] uppercase font-semibold opacity-80">Download on the</div>
+                            <div class="text-lg font-bold leading-none">App Store</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative lg:h-[650px] flex items-center justify-center" data-aos="fade-left">
+                <div
+                    class="absolute top-20 -right-4 z-40 bg-white p-3 rounded-xl shadow-xl animate-float-delayed border border-white/50 backdrop-blur-md">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
+                            ₹</div>
+                        <div class="text-xs">
+                            <div class="font-bold">Payment Recieved</div>
+                            <div class="text-slate-500">Just now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="relative w-[300px] h-[600px] bg-slate-900 rounded-[3rem] shadow-2xl border-[8px] border-slate-900 overflow-hidden ring-1 ring-white/20 hover:scale-105 transition duration-500">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-xl z-30"></div>
+                    <div class="w-full h-full bg-[#E9EBF4] pt-12 p-4 flex flex-col">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900">Oryoo</h2>
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-teal-600 animate-spin"
+                                style="animation-duration: 10s;">⚡</div>
+                        </div>
+                        <div
+                            class="bg-gradient-to-br from-teal-500 to-teal-700 rounded-3xl p-6 text-white mb-6 shadow-lg shadow-teal-500/20">
+                            <div class="text-teal-100 text-sm font-medium mb-1">Total Revenue</div>
+                            <div class="text-3xl font-bold mb-4">₹42,450</div>
+                            <div class="flex gap-2"><span
+                                    class="bg-white/20 px-3 py-1 rounded-full text-xs backdrop-blur-sm">Order #203
+                                    Paid</span></div>
+                        </div>
+                        <div class="flex-1 space-y-3 overflow-hidden">
+                            <div
+                                class="bg-white p-4 rounded-2xl flex items-center justify-between shadow-sm transform hover:scale-105 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-100 text-center leading-10 text-lg">
+                                        👩‍🎨</div>
+                                    <div>
+                                        <div class="font-bold text-slate-800 text-sm">Design Service</div>
+                                        <div class="text-xs text-slate-400">Priya S. • Due Tmrw</div>
+                                    </div>
+                                </div>
+                                <div class="font-bold text-slate-800">₹5,000</div>
+                            </div>
+                            <div
+                                class="bg-white p-4 rounded-2xl flex items-center justify-between shadow-sm transform hover:scale-105 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-orange-100 text-center leading-10 text-lg">🍰
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-800 text-sm">Cake Order</div>
+                                        <div class="text-xs text-slate-400">Rohan K. • Pending</div>
+                                    </div>
+                                </div>
+                                <div class="font-bold text-slate-800">₹850</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Smartest Tools for <span
+                    class="text-teal-600">Growth</span></h2>
+            <p class="text-slate-500 max-w-xl mx-auto">We packed the power of enterprise software into an app so simple,
+                your grandma could use it.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-panel p-8 rounded-[2rem] md:col-span-2 relative overflow-hidden group hover:shadow-lg transition"
+                data-aos="fade-up">
+                <div
+                    class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600 mb-6 text-2xl">
+                    👥</div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">360° Client Management</h3>
+                <p class="text-slate-500 mb-6 max-w-md">Add, edit, and view all your customers in one place. See
+                    purchase history, pending payments, and notes instantly.</p>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 inline-flex gap-4 shadow-sm items-center">
+                    <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs">
+                        RJ</div>
+                    <div>
+                        <div class="text-xs font-bold text-slate-900">Rahul Jain</div>
+                        <div class="text-[10px] text-slate-400">VIP Customer</div>
+                    </div>
+                    <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full">Active</span>
+                </div>
+            </div>
+            <div class="bg-slate-900 text-white p-8 rounded-[2rem] group" data-aos="fade-up" data-aos-delay="100">
+                <div
+                    class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-teal-400 mb-6 text-2xl">
+                    💬</div>
+                <h3 class="text-xl font-bold mb-2">WhatsApp First</h3>
+                <p class="text-slate-400 text-sm">Send professional invoices and reminders directly to WhatsApp. No more
+                    awkward text messages.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-[2rem] group hover:bg-white transition" data-aos="fade-up">
+                <div
+                    class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-6 text-2xl">
+                    📦</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Order Tracking</h3>
+                <p class="text-slate-500 text-sm">From "Pending" to "Delivered" in one tap. Never lose track of a
+                    deadline.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-[2rem] group hover:bg-white transition" data-aos="fade-up"
+                data-aos-delay="100">
+                <div
+                    class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6 text-2xl">
+                    🤖</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">AI Insights</h3>
+                <p class="text-slate-500 text-sm">Know your best selling month and your top paying clients
+                    automatically.</p>
+            </div>
+            <div class="glass-panel p-8 rounded-[2rem] group hover:bg-white transition" data-aos="fade-up"
+                data-aos-delay="200">
+                <div
+                    class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 mb-6 text-2xl">
+                    🧾</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">PDF Invoices</h3>
+                <p class="text-slate-500 text-sm">Generate beautiful PDF bills in 1 click and share them.</p>
+            </div>
+        </div>
+    </section>
+    <section id="problems" class="py-20 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Running a business is <span
+                    class="text-red-500">hard.</span></h2>
+            <p class="text-slate-500">Do you face these problems every day?</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-8 rounded-3xl border border-red-50 shadow-sm hover:shadow-xl hover:border-red-200 transition duration-300 hover-tilt"
+                data-aos="fade-up">
+                <div
+                    class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 mb-4 text-xl font-bold">
+                    ✕</div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Losing Money</h3>
+                <p class="text-slate-500 text-sm">Forgetting who owes you money because you didn't write it down
+                    immediately.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-red-50 shadow-sm hover:shadow-xl hover:border-red-200 transition duration-300 hover-tilt"
+                data-aos="fade-up" data-aos-delay="100">
+                <div
+                    class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 mb-4 text-xl font-bold">
+                    ✕</div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Messy WhatsApp</h3>
+                <p class="text-slate-500 text-sm">Client orders getting lost in hundreds of "Good Morning" messages.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-red-50 shadow-sm hover:shadow-xl hover:border-red-200 transition duration-300 hover-tilt"
+                data-aos="fade-up" data-aos-delay="200">
+                <div
+                    class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 mb-4 text-xl font-bold">
+                    ✕</div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Paper Chaos</h3>
+                <p class="text-slate-500 text-sm">Notebooks get lost, pages get torn, and you have no backup of your
+                    data.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white overflow-hidden relative group">
+        <div
+            class="absolute -left-10 -bottom-10 w-40 h-40 bg-teal-500 rounded-full opacity-10 filter blur-3xl group-hover:opacity-20 transition">
+        </div>
+        <div
+            class="absolute -right-10 -top-10 w-40 h-40 bg-purple-500 rounded-full opacity-10 filter blur-3xl group-hover:opacity-20 transition">
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-2xl font-bold text-slate-300 mb-12 uppercase tracking-widest">Stop juggling apps</h2>
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-lg md:text-xl font-semibold text-slate-400 opacity-80"
+                data-aos="zoom-in">
+                <span class="line-through decoration-red-500 decoration-2">Excel</span>
+                <span class="text-teal-500 font-bold">+</span>
+                <span class="line-through decoration-red-500 decoration-2">Diary</span>
+                <span class="text-teal-500 font-bold">+</span>
+                <span class="line-through decoration-red-500 decoration-2">Reminders</span>
+                <span class="text-teal-500 font-bold">+</span>
+                <span class="line-through decoration-red-500 decoration-2">Bill Book</span>
+            </div>
+            <div class="mt-8 text-4xl md:text-7xl font-black text-white" data-aos="fade-up">
+                = <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-400">Oryoo</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-0 rounded-[3rem] overflow-hidden shadow-2xl group">
+            <div
+                class="bg-slate-100 p-12 flex flex-col items-center text-center transition duration-500 group-hover:bg-slate-200">
+                <h3 class="text-2xl font-bold text-slate-400 mb-8 uppercase tracking-widest">Before Oryoo</h3>
+                <ul class="space-y-6 text-slate-500 font-medium">
+                    <li class="flex items-center gap-3"><span class="text-red-400 font-bold text-xl">✕</span> Missing
+                        payments</li>
+                    <li class="flex items-center gap-3"><span class="text-red-400 font-bold text-xl">✕</span> No
+                        follow-up reminders</li>
+                    <li class="flex items-center gap-3"><span class="text-red-400 font-bold text-xl">✕</span> Manual
+                        Invoice making</li>
+                    <li class="flex items-center gap-3"><span class="text-red-400 font-bold text-xl">✕</span> No
+                        business history</li>
+                </ul>
+            </div>
+            <div
+                class="bg-teal-600 p-12 flex flex-col items-center text-center relative overflow-hidden transition duration-500 group-hover:scale-[1.02] z-10">
+                <div
+                    class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-8 uppercase tracking-widest relative z-10">With Oryoo</h3>
+                <ul class="space-y-6 text-teal-100 font-medium relative z-10">
+                    <li class="flex items-center gap-3"><span
+                            class="bg-white text-teal-600 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">✓</span>
+                        Smart reminders</li>
+                    <li class="flex items-center gap-3"><span
+                            class="bg-white text-teal-600 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">✓</span>
+                        Organized Client List</li>
+                    <li class="flex items-center gap-3"><span
+                            class="bg-white text-teal-600 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">✓</span>
+                        1-Click PDF Invoices</li>
+                    <li class="flex items-center gap-3"><span
+                            class="bg-white text-teal-600 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">✓</span>
+                        Auto Analytics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+        </div>
+        <div class="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <div class="text-teal-400 font-bold uppercase tracking-widest text-xs mb-4">Oryoo Premium</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">Put your business on <br><span
+                        class="text-teal-400">Autopilot.</span></h2>
+                <p class="text-slate-400 text-lg mb-8">While you sleep, Oryoo works. Our automation tools ensure you
+                    never miss a payment or lose a client.</p>
+
+                <ul class="space-y-4 mb-8 text-slate-300">
+                    <li class="flex items-center gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center text-xs text-white">
+                            ✓</div> Auto Order Follow-up System
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center text-xs text-white">
+                            ✓</div> Smart Deadline Reminders
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center text-xs text-white">
+                            ✓</div> AI Business Insights
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-2xl" data-aos="fade-left">
+                <div class="flex items-center gap-4 mb-6">
+                    <div
+                        class="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 text-xl">
+                        🤖</div>
+                    <div>
+                        <div class="text-white font-bold">Oryoo Bot</div>
+                        <div class="text-slate-500 text-xs">Just now</div>
+                    </div>
+                </div>
+                <div class="bg-slate-700/50 p-4 rounded-xl text-slate-300 text-sm mb-4">
+                    "Hey Rahul, just a reminder that the payment for Order #204 is due tomorrow. Should I send a
+                    WhatsApp reminder to the client?"
+                </div>
+                <div class="flex gap-3">
+                    <button class="bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-bold">Yes, send it</button>
+                    <button class="bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-bold">Snooze</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h4 class="font-bold text-slate-900">Fast & Lightweight</h4>
+                    <p class="text-sm text-slate-500">Loads instantly, works on basic data.</p>
+                </div>
+                <div>
+                    <div class="text-4xl mb-4">👶</div>
+                    <h4 class="font-bold text-slate-900">No Learning Curve</h4>
+                    <p class="text-sm text-slate-500">Designed for non-techies.</p>
+                </div>
+                <div>
+                    <div class="text-4xl mb-4">🇮🇳</div>
+                    <h4 class="font-bold text-slate-900">Made for India</h4>
+                    <p class="text-sm text-slate-500">Rupees, WhatsApp, Local Support.</p>
+                </div>
+                <div>
+                    <div class="text-4xl mb-4">🔒</div>
+                    <h4 class="font-bold text-slate-900">100% Secure Cloud</h4>
+                    <p class="text-sm text-slate-500">Bank-level encryption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="pricing" class="py-24 bg-bg">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-slate-500">No hidden fees. Cancel anytime.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white rounded-[2.5rem] p-8 border border-slate-200" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-slate-900">Free Plan</h3>
+                    <div class="text-5xl font-extrabold text-slate-900 my-4">₹0</div>
+                    <p class="text-slate-500 mb-6">Forever free. Basic management.</p>
+                    <button
+                        class="w-full py-3 border-2 border-slate-900 rounded-xl font-bold text-slate-900 hover:bg-slate-50">Get
+                        Started</button>
+                </div>
+                <div class="bg-slate-900 rounded-[2.5rem] p-8 relative shadow-2xl" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div
+                        class="absolute top-6 right-6 bg-teal-500 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase">
+                        Best Value</div>
+                    <h3 class="text-2xl font-bold text-white">Premium</h3>
+                    <div class="text-5xl font-extrabold text-white my-4">₹99<span
+                            class="text-xl text-slate-400 font-normal">/mo</span></div>
+                    <p class="text-slate-400 mb-6">Full automation power.</p>
+                    <button
+                        class="w-full py-3 bg-teal-500 rounded-xl font-bold text-white hover:bg-teal-400 shadow-lg shadow-teal-500/25">Upgrade
+                        Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-100">
+                                <th class="p-6 font-bold text-slate-500 text-sm uppercase">Feature</th>
+                                <th class="p-6 font-bold text-slate-900 text-center">Free</th>
+                                <th class="p-6 font-bold text-teal-600 text-center">Premium (₹99)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm font-medium text-slate-600">
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">Client Management</td>
+                                <td class="p-6 text-center">10 Clients</td>
+                                <td class="p-6 text-center text-teal-600">Unlimited</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">Order Tracking</td>
+                                <td class="p-6 text-center">Basic List</td>
+                                <td class="p-6 text-center text-teal-600">Advanced Statuses</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">Smart Search</td>
+                                <td class="p-6 text-center">✅</td>
+                                <td class="p-6 text-center text-teal-600">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">AI Assistant</td>
+                                <td class="p-6 text-center">❌</td>
+                                <td class="p-6 text-center text-teal-600">✅ Included</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">WhatsApp Quick Messages</td>
+                                <td class="p-6 text-center text-slate-300">❌</td>
+                                <td class="p-6 text-center text-teal-600">✅ Included</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">PDF Invoice Generator</td>
+                                <td class="p-6 text-center text-slate-300">❌</td>
+                                <td class="p-6 text-center text-teal-600">✅ Included</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">Auto Follow-ups</td>
+                                <td class="p-6 text-center text-slate-300">❌</td>
+                                <td class="p-6 text-center text-teal-600">✅ Included</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">Advanced Analytics</td>
+                                <td class="p-6 text-center text-slate-300">Basic</td>
+                                <td class="p-6 text-center text-teal-600">Full Reports</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-6">Support</td>
+                                <td class="p-6 text-center">Email</td>
+                                <td class="p-6 text-center text-teal-600">Priority WhatsApp</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-bg">
+        <div class="max-w-3xl mx-auto px-6 text-center relative">
+            <div class="text-6xl absolute top-0 left-0 text-teal-200 opacity-50 font-serif">"</div>
+            <div
+                class="w-20 h-20 bg-white border-2 border-teal-100 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl shadow-md">
+                👨‍💻</div>
+            <p class="text-xl md:text-2xl text-slate-600 italic font-hand leading-relaxed mb-6 relative z-10">
+                "I built Oryoo because I saw my friends struggling with notebooks and Excel sheets. Small business
+                owners deserve simple, powerful tools that just work. We are building this for you."
+            </p>
+            <div class="font-bold text-slate-900 tracking-wide uppercase text-sm">— Founder, Oryoo</div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white" x-data="{ open: null }">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl font-extrabold text-center text-slate-900 mb-12">FAQ</h2>
+            <div class="space-y-4">
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 transition hover:bg-white hover:shadow-md">
+                    <button @click="open === 1 ? open = null : open = 1"
+                        class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900">
+                        Is it free? <span class="text-teal-500 text-xl font-light"
+                            x-text="open === 1 ? '-' : '+'">+</span>
+                    </button>
+                    <div x-show="open === 1" x-collapse class="px-6 pb-6 text-slate-500 text-sm">Yes, free for up to 10
+                        clients. Perfect to start without paying a rupee.</div>
+                </div>
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 transition hover:bg-white hover:shadow-md">
+                    <button @click="open === 2 ? open = null : open = 2"
+                        class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900">
+                        What happens if I cross 10 clients? <span class="text-teal-500 text-xl font-light"
+                            x-text="open === 2 ? '-' : '+'">+</span>
+                    </button>
+                    <div x-show="open === 2" x-collapse class="px-6 pb-6 text-slate-500 text-sm">You can upgrade to
+                        Premium (₹99/mo) for unlimited access. Your data remains safe regardless.</div>
+                </div>
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 transition hover:bg-white hover:shadow-md">
+                    <button @click="open === 3 ? open = null : open = 3"
+                        class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900">
+                        Is PDF Invoice free? <span class="text-teal-500 text-xl font-light"
+                            x-text="open === 3 ? '-' : '+'">+</span>
+                    </button>
+                    <div x-show="open === 3" x-collapse class="px-6 pb-6 text-slate-500 text-sm">Yes! The PDF generator
+                        is now free for everyone on all plans.</div>
+                </div>
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 transition hover:bg-white hover:shadow-md">
+                    <button @click="open === 4 ? open = null : open = 4"
+                        class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900">
+                        Is my data safe? <span class="text-teal-500 text-xl font-light"
+                            x-text="open === 4 ? '-' : '+'">+</span>
+                    </button>
+                    <div x-show="open === 4" x-collapse class="px-6 pb-6 text-slate-500 text-sm">100% secure. We use
+                        bank-level encryption and daily cloud backups.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black pt-24 pb-12 text-center relative overflow-hidden text-white">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-purple-500 to-teal-500"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center">
+
+            <p class="text-teal-400 font-bold uppercase tracking-widest mb-6">Ready for the upgrade?</p>
+            <h2
+                class="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter hover:tracking-normal transition-all duration-700 cursor-default">
+                NO MORE <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-400">LOST
+                    MONEY.</span>
+            </h2>
+
+            <p class="text-slate-400 max-w-lg mx-auto mb-12 text-lg">Your pocket CFO is waiting. Join thousands of smart
+                Indian business owners today.</p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-20 w-full max-w-md">
+                <button
+                    class="w-full py-4 bg-white text-black rounded-full font-bold hover:bg-teal-50 transition transform hover:-translate-y-1">Download
+                    App</button>
+            </div>
+
+            <div
+                class="border-t border-slate-800 pt-12 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm w-full">
+                <div class="font-black text-2xl text-white mb-4 md:mb-0 tracking-tighter">ORYOO</div>
+                <div class="flex gap-8 font-medium">
+                    <a href="#" class="hover:text-teal-400 transition hover:underline">Privacy</a>
+                    <a href="#" class="hover:text-teal-400 transition hover:underline">Terms</a>
+                    <a href="#" class="hover:text-teal-400 transition hover:underline">Instagram</a>
+                    <a href="#" class="hover:text-teal-400 transition hover:underline">Twitter</a>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center gap-2">
+                    <span>Made with</span>
+                    <span class="text-red-500 animate-pulse">❤</span>
+                    <span>and ☕ in India 🇮🇳</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
+    </script>
+</body>
+
+</html>

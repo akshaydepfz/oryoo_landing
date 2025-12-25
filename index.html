@@ -146,7 +146,7 @@
         <div
             class="glass-panel px-6 py-3 rounded-full flex items-center gap-8 shadow-lg shadow-black/5 transition hover:shadow-xl">
             <a href="#" class="text-xl font-bold text-teal-800 flex items-center gap-2">
-                <div class="w-6 h-6 bg-gradient-to-tr from-teal-400 to-teal-600 rounded-md animate-pulse-slow"></div>
+                <img src="logo.svg" alt="Oryoo Logo" class="h-6 w-6 rounded-full object-cover">
                 Oryoo
             </a>
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
@@ -194,7 +194,8 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <a href="#" class="store-btn">
+                    <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" class="store-btn"
+                        target="_blank" rel="noopener noreferrer">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.54,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
@@ -204,6 +205,7 @@
                             <div class="text-lg font-bold leading-none">Google Play</div>
                         </div>
                     </a>
+
                     <a href="#" class="store-btn bg-white text-slate-900 border border-slate-200 hover:bg-slate-50">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                             <path
@@ -235,43 +237,171 @@
                     class="relative w-[300px] h-[600px] bg-slate-900 rounded-[3rem] shadow-2xl border-[8px] border-slate-900 overflow-hidden ring-1 ring-white/20 hover:scale-105 transition duration-500">
                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-xl z-30"></div>
                     <div class="w-full h-full bg-[#E9EBF4] pt-12 p-4 flex flex-col">
+                        <!-- Header with greeting and profile -->
                         <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-2xl font-bold text-slate-900">Oryoo</h2>
-                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-teal-600 animate-spin"
-                                style="animation-duration: 10s;">⚡</div>
-                        </div>
-                        <div
-                            class="bg-gradient-to-br from-teal-500 to-teal-700 rounded-3xl p-6 text-white mb-6 shadow-lg shadow-teal-500/20">
-                            <div class="text-teal-100 text-sm font-medium mb-1">Total Revenue</div>
-                            <div class="text-3xl font-bold mb-4">₹42,450</div>
-                            <div class="flex gap-2"><span
-                                    class="bg-white/20 px-3 py-1 rounded-full text-xs backdrop-blur-sm">Order #203
-                                    Paid</span></div>
-                        </div>
-                        <div class="flex-1 space-y-3 overflow-hidden">
-                            <div
-                                class="bg-white p-4 rounded-2xl flex items-center justify-between shadow-sm transform hover:scale-105 transition">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-purple-100 text-center leading-10 text-lg">
-                                        👩‍🎨</div>
-                                    <div>
-                                        <div class="font-bold text-slate-800 text-sm">Design Service</div>
-                                        <div class="text-xs text-slate-400">Priya S. • Due Tmrw</div>
-                                    </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-sm">
+                                    AI</div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-lg">Oryoo</div>
+                                    <div class="text-xs text-slate-500">Good Evening!</div>
                                 </div>
-                                <div class="font-bold text-slate-800">₹5,000</div>
                             </div>
-                            <div
-                                class="bg-white p-4 rounded-2xl flex items-center justify-between shadow-sm transform hover:scale-105 transition">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-orange-100 text-center leading-10 text-lg">🍰
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-slate-800 text-sm">Cake Order</div>
-                                        <div class="text-xs text-slate-400">Rohan K. • Pending</div>
+                            <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Total Earned Card -->
+                        <div
+                            class="bg-gradient-to-br from-teal-600 to-teal-800 rounded-3xl p-6 text-white mb-4 shadow-lg shadow-teal-600/20">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <div class="text-teal-100 text-sm font-medium mb-1">Total Earned</div>
+                                    <div class="text-4xl font-bold">₹1.5K</div>
+                                </div>
+                                <div
+                                    class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                                    <span class="text-2xl">₹</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metrics Cards Row -->
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <!-- Total Customers -->
+                            <div class="bg-white rounded-2xl p-4 shadow-sm">
+                                <div class="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                </div>
+                                <div class="text-xs text-slate-500 mb-1">Total Customers</div>
+                                <div class="text-2xl font-bold text-slate-900">3</div>
+                            </div>
+
+                            <!-- Total Orders -->
+                            <div class="bg-white rounded-2xl p-4 shadow-sm">
+                                <div class="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                    </svg>
+                                </div>
+                                <div class="text-xs text-slate-500 mb-1">Total Orders</div>
+                                <div class="text-2xl font-bold text-slate-900">2</div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Payments Card -->
+                        <div class="bg-white rounded-2xl p-4 shadow-sm mb-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <div class="text-sm font-semibold text-slate-900">Pending Payments</div>
+                            </div>
+                            <div class="text-2xl font-bold text-slate-900">₹0</div>
+                        </div>
+
+                        <!-- Revenue Trend Section -->
+                        <div class="bg-white rounded-2xl p-4 shadow-sm mb-4 flex-1">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="text-sm font-bold text-slate-900">Revenue Trend</div>
+                                <div class="text-xs text-slate-500">Last 7 Days</div>
+                            </div>
+                            <div class="flex items-end justify-between h-32 gap-1">
+                                <div class="flex-1 flex flex-col items-center justify-end">
+                                    <div class="w-full bg-slate-100 rounded-t" style="height: 20%;"></div>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-end">
+                                    <div class="w-full bg-slate-100 rounded-t" style="height: 30%;"></div>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-end">
+                                    <div class="w-full bg-slate-100 rounded-t" style="height: 15%;"></div>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-end">
+                                    <div class="w-full bg-slate-100 rounded-t" style="height: 25%;"></div>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-end">
+                                    <div class="w-full bg-slate-100 rounded-t" style="height: 10%;"></div>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-end">
+                                    <div class="w-full bg-slate-100 rounded-t" style="height: 35%;"></div>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-end relative">
+                                    <div class="w-full bg-teal-600 rounded-t relative" style="height: 100%;">
+                                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-white text-[10px] font-semibold whitespace-nowrap"
+                                            style="writing-mode: vertical-rl; text-orientation: mixed;">
+                                            ₹1.5K
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="font-bold text-slate-800">₹850</div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Navigation -->
+                        <div class="bg-white rounded-2xl p-3 shadow-lg mt-auto">
+                            <div class="flex justify-around items-center">
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-6 h-6 text-teal-600">
+                                        <svg fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                        </svg>
+                                    </div>
+                                    <div class="w-1 h-1 bg-teal-600 rounded-full"></div>
+                                    <div class="text-[10px] text-teal-600 font-medium">Home</div>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-6 h-6 text-slate-400">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">Clients</div>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-6 h-6 text-slate-400">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                        </svg>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">Orders</div>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-6 h-6 text-slate-400">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                        </svg>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">Pay</div>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-6 h-6 text-slate-400">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400">Settings</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -703,8 +833,8 @@
                 class="border-t border-slate-800 pt-12 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm w-full">
                 <div class="font-black text-2xl text-white mb-4 md:mb-0 tracking-tighter">ORYOO</div>
                 <div class="flex gap-8 font-medium">
-                    <a href="#" class="hover:text-teal-400 transition hover:underline">Privacy</a>
-                    <a href="#" class="hover:text-teal-400 transition hover:underline">Terms</a>
+                    <a href="privacy-policy.html" class="hover:text-teal-400 transition hover:underline">Privacy</a>
+                    <a href="terms-and-conditions.html" class="hover:text-teal-400 transition hover:underline">Terms</a>
                     <a href="#" class="hover:text-teal-400 transition hover:underline">Instagram</a>
                     <a href="#" class="hover:text-teal-400 transition hover:underline">Twitter</a>
                 </div>

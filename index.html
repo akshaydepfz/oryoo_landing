@@ -156,7 +156,7 @@
             </div>
             <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank"
                 rel="noopener noreferrer"
-                class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40 inline-block">
+                class="app-download-link bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40 inline-block">
                 Get App
             </a>
         </div>
@@ -207,7 +207,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="store-btn bg-white text-slate-900 border border-slate-200 hover:bg-slate-50">
+                    <a href="https://apps.apple.com/in/app/oryoo/id6759499821" class="store-btn bg-white text-slate-900 border border-slate-200 hover:bg-slate-50" target="_blank" rel="noopener noreferrer">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" />
@@ -660,7 +660,7 @@
                 <p class="text-slate-500">No hidden fees. Cancel anytime.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
                 <div class="bg-white rounded-[2.5rem] p-8 border border-slate-200" data-aos="fade-up">
                     <h3 class="text-2xl font-bold text-slate-900">Free Plan</h3>
                     <div class="text-5xl font-extrabold text-slate-900 my-4">₹0</div>
@@ -669,15 +669,24 @@
                         class="w-full py-3 border-2 border-slate-900 rounded-xl font-bold text-slate-900 hover:bg-slate-50">Get
                         Started</button>
                 </div>
+                <div class="bg-white rounded-[2.5rem] p-8 border border-slate-200" data-aos="fade-up"
+                    data-aos-delay="50">
+                    <h3 class="text-2xl font-bold text-slate-900">Yearly</h3>
+                    <div class="text-5xl font-extrabold text-slate-900 my-4">₹499<span
+                            class="text-xl text-slate-500 font-normal">/year</span></div>
+                    <p class="text-slate-500 mb-6">Full automation power. Billed annually.</p>
+                    <button
+                        class="w-full py-3 border-2 border-teal-600 text-teal-600 rounded-xl font-bold hover:bg-teal-50">Upgrade
+                        Now</button>
+                </div>
                 <div class="bg-slate-900 rounded-[2.5rem] p-8 relative shadow-2xl" data-aos="fade-up"
                     data-aos-delay="100">
                     <div
                         class="absolute top-6 right-6 bg-teal-500 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase">
                         Best Value</div>
-                    <h3 class="text-2xl font-bold text-white">Premium</h3>
-                    <div class="text-5xl font-extrabold text-white my-4">₹99<span
-                            class="text-xl text-slate-400 font-normal">/mo</span></div>
-                    <p class="text-slate-400 mb-6">Full automation power.</p>
+                    <h3 class="text-2xl font-bold text-white">Lifetime</h3>
+                    <div class="text-5xl font-extrabold text-white my-4">₹999</div>
+                    <p class="text-slate-400 mb-6">One-time payment. Forever access.</p>
                     <button
                         class="w-full py-3 bg-teal-500 rounded-xl font-bold text-white hover:bg-teal-400 shadow-lg shadow-teal-500/25">Upgrade
                         Now</button>
@@ -691,7 +700,7 @@
                             <tr class="bg-slate-50 border-b border-slate-100">
                                 <th class="p-6 font-bold text-slate-500 text-sm uppercase">Feature</th>
                                 <th class="p-6 font-bold text-slate-900 text-center">Free</th>
-                                <th class="p-6 font-bold text-teal-600 text-center">Premium (₹99)</th>
+                                <th class="p-6 font-bold text-teal-600 text-center">Premium (₹499/yr)</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm font-medium text-slate-600">
@@ -782,7 +791,7 @@
                             x-text="open === 2 ? '-' : '+'">+</span>
                     </button>
                     <div x-show="open === 2" x-collapse class="px-6 pb-6 text-slate-500 text-sm">You can upgrade to
-                        Premium (₹99/mo) for unlimited access. Your data remains safe regardless.</div>
+                        Premium (₹499/year or ₹999 lifetime) for unlimited access. Your data remains safe regardless.</div>
                 </div>
                 <div class="bg-slate-50 rounded-2xl border border-slate-100 transition hover:bg-white hover:shadow-md">
                     <button @click="open === 3 ? open = null : open = 3"
@@ -827,7 +836,7 @@
             <div class="flex flex-col sm:flex-row justify-center gap-4 mb-20 w-full max-w-md">
                 <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank"
                     rel="noopener noreferrer"
-                    class="w-full py-4 bg-white text-black rounded-full font-bold hover:bg-teal-50 transition transform hover:-translate-y-1 inline-block text-center">Download
+                    class="app-download-link w-full py-4 bg-white text-black rounded-full font-bold hover:bg-teal-50 transition transform hover:-translate-y-1 inline-block text-center">Download
                     App</a>
             </div>
 
@@ -851,6 +860,15 @@
 
     <script>
         AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
+
+        // Redirect to correct app store based on OS
+        (function() {
+            var isAndroid = /Android/i.test(navigator.userAgent);
+            var storeUrl = isAndroid ? 'https://play.google.com/store/apps/details?id=com.oryoo.app' : 'https://apps.apple.com/in/app/oryoo/id6759499821';
+            document.querySelectorAll('.app-download-link').forEach(function(link) {
+                link.href = storeUrl;
+            });
+        })();
     </script>
 </body>
 

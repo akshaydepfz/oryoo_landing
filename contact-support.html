@@ -87,8 +87,8 @@
                 <a href="index.html#features" class="hover:text-teal-600 transition">Features</a>
                 <a href="index.html#pricing" class="hover:text-teal-600 transition">Pricing</a>
             </div>
-            <a href="index.html"
-                class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
+            <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank" rel="noopener noreferrer"
+                class="app-download-link bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
                 Get App
             </a>
         </div>
@@ -238,6 +238,17 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Redirect to correct app store based on OS
+        (function() {
+            var isAndroid = /Android/i.test(navigator.userAgent);
+            var storeUrl = isAndroid ? 'https://play.google.com/store/apps/details?id=com.oryoo.app' : 'https://apps.apple.com/in/app/oryoo/id6759499821';
+            document.querySelectorAll('.app-download-link').forEach(function(link) {
+                link.href = storeUrl;
+            });
+        })();
+    </script>
 </body>
 
 </html>

@@ -1,200 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Oryoo</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            bg: '#E9EBF4',
+            teal: {
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
-      background-color: #ffffff;
-      color: #333333;
-      margin: 0;
-      padding: 20px;
+    .bg-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1,
-    h2 {
-      color: #111111;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin-top: 30px;
-    }
-
-    p,
-    li {
-      font-size: 15px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .date {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #666;
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
   </style>
 </head>
 
-<body>
+<body class="bg-bg text-slate-800 antialiased overflow-x-hidden relative selection:bg-teal-200 selection:text-teal-900 min-h-screen">
 
-  <div class="container">
+  <div class="bg-grain"></div>
 
-    <h1>Privacy Policy</h1>
-    <p class="date"><strong>Last Updated:</strong> December 22, 2026</p>
+  <nav class="fixed top-6 left-0 right-0 z-[60] flex justify-center px-4">
+    <div
+      class="glass-panel px-6 py-3 rounded-full flex items-center gap-8 shadow-lg shadow-black/5 transition hover:shadow-xl">
+      <a href="index.html" class="text-xl font-bold text-teal-800 flex items-center gap-2">
+        <img src="logo.svg" alt="Oryoo Logo" class="h-6 w-6 rounded-full object-cover">
+        Oryoo
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="index.html#problems" class="hover:text-teal-600 transition">Why Oryoo?</a>
+        <a href="index.html#features" class="hover:text-teal-600 transition">Features</a>
+        <a href="index.html#pricing" class="hover:text-teal-600 transition">Pricing</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank" rel="noopener noreferrer"
+        class="app-download-link bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
+        Get App
+      </a>
+    </div>
+  </nav>
 
-    <p>
-      This Privacy Policy (“Policy”) governs the collection, use, storage,
-      disclosure, and protection of information by <strong>Oryoo</strong>
-      (“Company”, “we”, “our”, “us”) in connection with the use of the Oryoo
-      mobile application, web application, and related services
-      (collectively, the “Service”).
-    </p>
+  <section class="relative pt-40 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden -z-10">
+      <div
+        class="absolute top-20 left-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse">
+      </div>
+      <div
+        class="absolute top-40 right-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
+        style="animation-delay: 2s;">
+      </div>
+    </div>
 
-    <p>
-      By accessing or using the Service, you (“User”, “you”) agree to the
-      collection and use of information in accordance with this Policy.
-    </p>
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="glass-panel p-8 lg:p-12 rounded-2xl shadow-lg">
+        <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-2">Privacy Policy</h1>
+        <p class="text-slate-500 text-sm mb-8"><strong>Last Updated:</strong> December 22, 2026</p>
 
-    <h2>1. Information We Collect</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            This Privacy Policy ("Policy") governs the collection, use, storage,
+            disclosure, and protection of information by <strong>Oryoo</strong>
+            ("Company", "we", "our", "us") in connection with the use of the Oryoo
+            mobile application, web application, and related services
+            (collectively, the "Service").
+          </p>
 
-    <h3>1.1 Personal Information</h3>
-    <p>
-      We may collect personal information that identifies or relates to an
-      individual, including but not limited to:
-    </p>
-    <ul>
-      <li>Full name</li>
-      <li>Phone number</li>
-      <li>Email address</li>
-      <li>Business name and business-related details</li>
-      <li>Profile and onboarding information voluntarily provided by the User</li>
-    </ul>
+          <p class="text-slate-600 leading-relaxed mb-6">
+            By accessing or using the Service, you ("User", "you") agree to the
+            collection and use of information in accordance with this Policy.
+          </p>
 
-    <h3>1.2 Business Data</h3>
-    <p>
-      We collect and store business-related data entered by the User, including:
-    </p>
-    <ul>
-      <li>Client information</li>
-      <li>Orders, invoices, and payment records</li>
-      <li>Notes, reminders, schedules, and internal records</li>
-    </ul>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">1. Information We Collect</h2>
 
-    <h3>1.3 Technical & Usage Data</h3>
-    <p>
-      We may automatically collect the following technical information:
-    </p>
-    <ul>
-      <li>Device type, operating system, and identifiers</li>
-      <li>Application version</li>
-      <li>Usage logs, analytics data, and crash reports</li>
-    </ul>
+          <h3 class="text-lg font-semibold text-slate-800 mt-6 mb-2">1.1 Personal Information</h3>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            We may collect personal information that identifies or relates to an
+            individual, including but not limited to:
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>Full name</li>
+            <li>Phone number</li>
+            <li>Email address</li>
+            <li>Business name and business-related details</li>
+            <li>Profile and onboarding information voluntarily provided by the User</li>
+          </ul>
 
-    <h2>2. Purpose of Data Collection</h2>
-    <p>
-      The information collected is used for the following purposes:
-    </p>
-    <ul>
-      <li>To provide, operate, and maintain the Service</li>
-      <li>To authenticate users and manage accounts</li>
-      <li>To securely store and sync business data</li>
-      <li>To send service-related notifications and reminders</li>
-      <li>To improve performance and user experience</li>
-      <li>To provide customer support</li>
-      <li>To comply with applicable legal obligations</li>
-    </ul>
+          <h3 class="text-lg font-semibold text-slate-800 mt-6 mb-2">1.2 Business Data</h3>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            We collect and store business-related data entered by the User, including:
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>Client information</li>
+            <li>Orders, invoices, and payment records</li>
+            <li>Notes, reminders, schedules, and internal records</li>
+          </ul>
 
-    <h2>3. Data Storage and Security</h2>
-    <p>
-      User data is stored on secure servers and protected using industry-standard
-      security practices, including encrypted communication and controlled access.
-      While we strive to protect your information, no system can guarantee absolute
-      security.
-    </p>
+          <h3 class="text-lg font-semibold text-slate-800 mt-6 mb-2">1.3 Technical & Usage Data</h3>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            We may automatically collect the following technical information:
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>Device type, operating system, and identifiers</li>
+            <li>Application version</li>
+            <li>Usage logs, analytics data, and crash reports</li>
+          </ul>
 
-    <h2>4. Third-Party Services</h2>
-    <p>
-      Oryoo may use third-party service providers for authentication, cloud
-      infrastructure, analytics, and error reporting. These providers are
-      permitted to access data only as required to perform their services and
-      are obligated to protect it.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">2. Purpose of Data Collection</h2>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            The information collected is used for the following purposes:
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>To provide, operate, and maintain the Service</li>
+            <li>To authenticate users and manage accounts</li>
+            <li>To securely store and sync business data</li>
+            <li>To send service-related notifications and reminders</li>
+            <li>To improve performance and user experience</li>
+            <li>To provide customer support</li>
+            <li>To comply with applicable legal obligations</li>
+          </ul>
 
-    <h2>5. Data Disclosure</h2>
-    <p>
-      We do not sell, rent, or trade your personal or business data.
-      Data may be disclosed only when required by law, legal process,
-      regulatory authorities, or with the User’s explicit consent.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">3. Data Storage and Security</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            User data is stored on secure servers and protected using industry-standard
+            security practices, including encrypted communication and controlled access.
+            While we strive to protect your information, no system can guarantee absolute
+            security.
+          </p>
 
-    <h2>6. User Rights</h2>
-    <p>
-      Subject to applicable laws, Users have the right to:
-    </p>
-    <ul>
-      <li>Access their personal data</li>
-      <li>Correct or update inaccurate information</li>
-      <li>Request deletion of their account and associated data</li>
-      <li>Withdraw consent where applicable</li>
-    </ul>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">4. Third-Party Services</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Oryoo may use third-party service providers for authentication, cloud
+            infrastructure, analytics, and error reporting. These providers are
+            permitted to access data only as required to perform their services and
+            are obligated to protect it.
+          </p>
 
-    <h2>7. Data Retention</h2>
-    <p>
-      Data is retained for as long as the User’s account remains active.
-      Upon account deletion, data will be permanently removed unless retention
-      is required by law.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">5. Data Disclosure</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            We do not sell, rent, or trade your personal or business data.
+            Data may be disclosed only when required by law, legal process,
+            regulatory authorities, or with the User's explicit consent.
+          </p>
 
-    <h2>8. Children’s Privacy</h2>
-    <p>
-      The Service is not intended for individuals under the age of 18.
-      We do not knowingly collect personal data from minors.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">6. User Rights</h2>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            Subject to applicable laws, Users have the right to:
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>Access their personal data</li>
+            <li>Correct or update inaccurate information</li>
+            <li>Request deletion of their account and associated data</li>
+            <li>Withdraw consent where applicable</li>
+          </ul>
 
-    <h2>9. Changes to This Policy</h2>
-    <p>
-      We reserve the right to update or modify this Policy at any time.
-      Continued use of the Service after changes indicates acceptance
-      of the updated Policy.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">7. Data Retention</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Data is retained for as long as the User's account remains active.
+            Upon account deletion, data will be permanently removed unless retention
+            is required by law.
+          </p>
 
-    <h2>10. Contact Information</h2>
-    <p>
-      If you have any questions or concerns regarding this Privacy Policy,
-      please contact us:
-    </p>
-    <p>
-      <strong>Email:</strong> hi@oryoo.in<br />
-      <strong>Application Name:</strong> Oryoo
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">8. Children's Privacy</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            The Service is not intended for individuals under the age of 18.
+            We do not knowingly collect personal data from minors.
+          </p>
 
-    <footer>
-      © 2026 Oryoo. All rights reserved.
-    </footer>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">9. Changes to This Policy</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            We reserve the right to update or modify this Policy at any time.
+            Continued use of the Service after changes indicates acceptance
+            of the updated Policy.
+          </p>
 
-  </div>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">10. Contact Information</h2>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            If you have any questions or concerns regarding this Privacy Policy,
+            please contact us:
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            <strong>Email:</strong> hi@oryoo.in<br />
+            <strong>Application Name:</strong> Oryoo
+          </p>
 
+          <footer class="mt-12 pt-8 border-t border-slate-200 text-sm text-slate-500">
+            © 2026 Oryoo. All rights reserved.
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black pt-12 pb-8 text-center relative overflow-hidden text-white">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-purple-500 to-teal-500"></div>
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+      <div
+        class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+        <div class="font-black text-2xl text-white mb-4 md:mb-0 tracking-tighter">ORYOO</div>
+        <div class="flex gap-8 font-medium mb-4 md:mb-0">
+          <a href="privacy-policy.html" class="hover:text-teal-400 transition hover:underline">Privacy</a>
+          <a href="terms-and-conditions.html" class="hover:text-teal-400 transition hover:underline">Terms</a>
+          <a href="contact-support.html" class="hover:text-teal-400 transition hover:underline">Contact Us</a>
+          <a href="index.html" class="hover:text-teal-400 transition hover:underline">Home</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Made with</span>
+          <span class="text-red-500 animate-pulse">❤</span>
+          <span>in India 🇮🇳</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      var storeUrl = isAndroid ? 'https://play.google.com/store/apps/details?id=com.oryoo.app' : 'https://apps.apple.com/in/app/oryoo/id6759499821';
+      document.querySelectorAll('.app-download-link').forEach(function(link) {
+        link.href = storeUrl;
+      });
+    })();
+  </script>
 </body>
 
 </html>

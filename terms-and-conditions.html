@@ -1,171 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms & Conditions | Oryoo</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            bg: '#E9EBF4',
+            teal: {
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
-      background-color: #ffffff;
-      color: #333333;
-      margin: 0;
-      padding: 20px;
+    .bg-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1,
-    h2 {
-      color: #111111;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin-top: 30px;
-    }
-
-    p,
-    li {
-      font-size: 15px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .date {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #666;
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
   </style>
 </head>
 
-<body>
+<body class="bg-bg text-slate-800 antialiased overflow-x-hidden relative selection:bg-teal-200 selection:text-teal-900 min-h-screen">
 
-  <div class="container">
+  <div class="bg-grain"></div>
 
-    <h1>Terms & Conditions</h1>
-    <p class="date"><strong>Last Updated:</strong> December 25, 2026</p>
+  <nav class="fixed top-6 left-0 right-0 z-[60] flex justify-center px-4">
+    <div
+      class="glass-panel px-6 py-3 rounded-full flex items-center gap-8 shadow-lg shadow-black/5 transition hover:shadow-xl">
+      <a href="index.html" class="text-xl font-bold text-teal-800 flex items-center gap-2">
+        <img src="logo.svg" alt="Oryoo Logo" class="h-6 w-6 rounded-full object-cover">
+        Oryoo
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="index.html#problems" class="hover:text-teal-600 transition">Why Oryoo?</a>
+        <a href="index.html#features" class="hover:text-teal-600 transition">Features</a>
+        <a href="index.html#pricing" class="hover:text-teal-600 transition">Pricing</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank" rel="noopener noreferrer"
+        class="app-download-link bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
+        Get App
+      </a>
+    </div>
+  </nav>
 
-    <p>
-      These Terms and Conditions (“Terms”) govern your access to and use of
-      <strong>Oryoo</strong> (“Company”, “we”, “our”, “us”), including the Oryoo
-      mobile application, web application, and related services
-      (collectively, the “Service”).
-    </p>
+  <section class="relative pt-40 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden -z-10">
+      <div
+        class="absolute top-20 left-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse">
+      </div>
+      <div
+        class="absolute top-40 right-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
+        style="animation-delay: 2s;">
+      </div>
+    </div>
 
-    <p>
-      By accessing, registering, or using the Service, you (“User”, “you”)
-      agree to be legally bound by these Terms. If you do not agree,
-      you must not use the Service.
-    </p>
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="glass-panel p-8 lg:p-12 rounded-2xl shadow-lg">
+        <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-2">Terms & Conditions</h1>
+        <p class="text-slate-500 text-sm mb-8"><strong>Last Updated:</strong> December 25, 2026</p>
 
-    <h2>1. Eligibility</h2>
-    <p>
-      You must be at least 18 years old and legally capable of entering
-      into a binding agreement to use Oryoo.
-    </p>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            These Terms and Conditions ("Terms") govern your access to and use of
+            <strong>Oryoo</strong> ("Company", "we", "our", "us"), including the Oryoo
+            mobile application, web application, and related services
+            (collectively, the "Service").
+          </p>
 
-    <h2>2. Account Registration</h2>
-    <ul>
-      <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
-      <li>You agree to provide accurate, current, and complete information during registration.</li>
-      <li>You are solely responsible for all activities that occur under your account.</li>
-    </ul>
+          <p class="text-slate-600 leading-relaxed mb-6">
+            By accessing, registering, or using the Service, you ("User", "you")
+            agree to be legally bound by these Terms. If you do not agree,
+            you must not use the Service.
+          </p>
 
-    <h2>3. Use of the Service</h2>
-    <p>
-      Oryoo is a business management platform designed to help users manage
-      clients, orders, payments, invoices, reminders, and related business data.
-    </p>
-    <ul>
-      <li>You agree to use the Service only for lawful business purposes.</li>
-      <li>You must not misuse, abuse, or attempt to disrupt the Service.</li>
-      <li>You must not attempt to gain unauthorized access to systems or data.</li>
-    </ul>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">1. Eligibility</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            You must be at least 18 years old and legally capable of entering
+            into a binding agreement to use Oryoo.
+          </p>
 
-    <h2>4. User Data & Responsibility</h2>
-    <p>
-      You retain full ownership of the data you enter into Oryoo.
-      You are solely responsible for the accuracy, legality, and integrity
-      of your business data, including client and payment information.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">2. Account Registration</h2>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
+            <li>You agree to provide accurate, current, and complete information during registration.</li>
+            <li>You are solely responsible for all activities that occur under your account.</li>
+          </ul>
 
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">3. Use of the Service</h2>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            Oryoo is a business management platform designed to help users manage
+            clients, orders, payments, invoices, reminders, and related business data.
+          </p>
+          <ul class="list-disc pl-6 text-slate-600 space-y-1 mb-4">
+            <li>You agree to use the Service only for lawful business purposes.</li>
+            <li>You must not misuse, abuse, or attempt to disrupt the Service.</li>
+            <li>You must not attempt to gain unauthorized access to systems or data.</li>
+          </ul>
 
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">4. User Data & Responsibility</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            You retain full ownership of the data you enter into Oryoo.
+            You are solely responsible for the accuracy, legality, and integrity
+            of your business data, including client and payment information.
+          </p>
 
-    <h2>6. Third-Party Services</h2>
-    <p>
-      The Service may integrate with third-party services such as payment
-      gateways, messaging platforms, analytics tools, or cloud services.
-      Oryoo is not responsible for the availability, accuracy, or behavior
-      of such third-party services.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">6. Third-Party Services</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            The Service may integrate with third-party services such as payment
+            gateways, messaging platforms, analytics tools, or cloud services.
+            Oryoo is not responsible for the availability, accuracy, or behavior
+            of such third-party services.
+          </p>
 
-    <h2>7. Suspension & Termination</h2>
-    <p>
-      We reserve the right to suspend or terminate your account without prior
-      notice if you violate these Terms, misuse the Service, or engage in
-      unlawful or harmful activities.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">7. Suspension & Termination</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            We reserve the right to suspend or terminate your account without prior
+            notice if you violate these Terms, misuse the Service, or engage in
+            unlawful or harmful activities.
+          </p>
 
-    <h2>8. Limitation of Liability</h2>
-    <p>
-      To the maximum extent permitted by law, Oryoo shall not be liable for
-      any indirect, incidental, consequential, or special damages arising
-      from your use of the Service.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">8. Limitation of Liability</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            To the maximum extent permitted by law, Oryoo shall not be liable for
+            any indirect, incidental, consequential, or special damages arising
+            from your use of the Service.
+          </p>
 
-    <h2>9. Disclaimer</h2>
-    <p>
-      The Service is provided on an “as is” and “as available” basis.
-      We make no warranties regarding uninterrupted operation, data accuracy,
-      or error-free performance.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">9. Disclaimer</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            The Service is provided on an "as is" and "as available" basis.
+            We make no warranties regarding uninterrupted operation, data accuracy,
+            or error-free performance.
+          </p>
 
-    <h2>10. Changes to Terms</h2>
-    <p>
-      We may update these Terms at any time.
-      Continued use of the Service after changes are posted
-      constitutes acceptance of the revised Terms.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">10. Changes to Terms</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            We may update these Terms at any time.
+            Continued use of the Service after changes are posted
+            constitutes acceptance of the revised Terms.
+          </p>
 
-    <h2>11. Governing Law</h2>
-    <p>
-      These Terms shall be governed by and construed in accordance
-      with the laws of India, without regard to conflict of law principles.
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">11. Governing Law</h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            These Terms shall be governed by and construed in accordance
+            with the laws of India, without regard to conflict of law principles.
+          </p>
 
-    <h2>12. Contact Information</h2>
-    <p>
-      If you have any questions regarding these Terms, please contact us:
-    </p>
-    <p>
-      <strong>Email:</strong> hi@oryoo.in<br />
-      <strong>Application Name:</strong> Oryoo
-    </p>
+          <h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">12. Contact Information</h2>
+          <p class="text-slate-600 leading-relaxed mb-2">
+            If you have any questions regarding these Terms, please contact us:
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            <strong>Email:</strong> hi@oryoo.in<br />
+            <strong>Application Name:</strong> Oryoo
+          </p>
 
-    <footer>
-      © 2026 Oryoo. All rights reserved.
-    </footer>
+          <footer class="mt-12 pt-8 border-t border-slate-200 text-sm text-slate-500">
+            © 2026 Oryoo. All rights reserved.
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  </div>
+  <footer class="bg-black pt-12 pb-8 text-center relative overflow-hidden text-white">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-purple-500 to-teal-500"></div>
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+      <div
+        class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+        <div class="font-black text-2xl text-white mb-4 md:mb-0 tracking-tighter">ORYOO</div>
+        <div class="flex gap-8 font-medium mb-4 md:mb-0">
+          <a href="privacy-policy.html" class="hover:text-teal-400 transition hover:underline">Privacy</a>
+          <a href="terms-and-conditions.html" class="hover:text-teal-400 transition hover:underline">Terms</a>
+          <a href="contact-support.html" class="hover:text-teal-400 transition hover:underline">Contact Us</a>
+          <a href="index.html" class="hover:text-teal-400 transition hover:underline">Home</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Made with</span>
+          <span class="text-red-500 animate-pulse">❤</span>
+          <span>in India 🇮🇳</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
+  <script>
+    (function() {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      var storeUrl = isAndroid ? 'https://play.google.com/store/apps/details?id=com.oryoo.app' : 'https://apps.apple.com/in/app/oryoo/id6759499821';
+      document.querySelectorAll('.app-download-link').forEach(function(link) {
+        link.href = storeUrl;
+      });
+    })();
+  </script>
 </body>
 
 </html>

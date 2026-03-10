@@ -194,7 +194,7 @@
                     and grow your business in one simple app.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <div class="flex flex-col sm:flex-row gap-4 mb-4">
                     <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" class="store-btn"
                         target="_blank" rel="noopener noreferrer">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -207,7 +207,9 @@
                         </div>
                     </a>
 
-                    <a href="https://apps.apple.com/in/app/oryoo/id6759499821" class="store-btn bg-white text-slate-900 border border-slate-200 hover:bg-slate-50" target="_blank" rel="noopener noreferrer">
+                    <a href="https://apps.apple.com/in/app/oryoo/id6759499821"
+                        class="store-btn bg-white text-slate-900 border border-slate-200 hover:bg-slate-50"
+                        target="_blank" rel="noopener noreferrer">
                         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.37 12.36,4.26 13,3.5Z" />
@@ -218,6 +220,15 @@
                         </div>
                     </a>
                 </div>
+                <a href="presentation/how-to-use-oryoo.html"
+                    class="inline-flex items-center gap-2 text-sm font-medium text-teal-600 hover:text-teal-700 transition mb-8">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    How to Use Oryoo — Complete Guide
+                </a>
             </div>
 
             <div class="relative lg:h-[650px] flex items-center justify-center" data-aos="fade-left">
@@ -791,7 +802,8 @@
                             x-text="open === 2 ? '-' : '+'">+</span>
                     </button>
                     <div x-show="open === 2" x-collapse class="px-6 pb-6 text-slate-500 text-sm">You can upgrade to
-                        Premium (₹499/year or ₹999 lifetime) for unlimited access. Your data remains safe regardless.</div>
+                        Premium (₹499/year or ₹999 lifetime) for unlimited access. Your data remains safe regardless.
+                    </div>
                 </div>
                 <div class="bg-slate-50 rounded-2xl border border-slate-100 transition hover:bg-white hover:shadow-md">
                     <button @click="open === 3 ? open = null : open = 3"
@@ -846,7 +858,8 @@
                 <div class="flex gap-8 font-medium">
                     <a href="privacy-policy.html" class="hover:text-teal-400 transition hover:underline">Privacy</a>
                     <a href="terms-and-conditions.html" class="hover:text-teal-400 transition hover:underline">Terms</a>
-                    <a href="https://instagram.com/oryoo.in" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition hover:underline">Instagram</a>
+                    <a href="https://instagram.com/oryoo.in" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-teal-400 transition hover:underline">Instagram</a>
                     <a href="contact-support.html" class="hover:text-teal-400 transition hover:underline">Contact Us</a>
                 </div>
                 <div class="mt-4 md:mt-0 flex items-center gap-2">
@@ -862,10 +875,10 @@
         AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
 
         // Redirect to correct app store based on OS
-        (function() {
+        (function () {
             var isAndroid = /Android/i.test(navigator.userAgent);
             var storeUrl = isAndroid ? 'https://play.google.com/store/apps/details?id=com.oryoo.app' : 'https://apps.apple.com/in/app/oryoo/id6759499821';
-            document.querySelectorAll('.app-download-link').forEach(function(link) {
+            document.querySelectorAll('.app-download-link').forEach(function (link) {
                 link.href = storeUrl;
             });
         })();

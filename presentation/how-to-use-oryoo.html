@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use Oryoo | Oryoo</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+          colors: {
+            bg: '#E9EBF4',
+            teal: { 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .bg-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(to right, #2dd4bf, #0d9488);
+      z-index: 100;
+      transition: width 0.1s;
+    }
+
+    .hover-tilt {
+      transition: transform 0.3s ease;
+    }
+
+    .hover-tilt:hover {
+      transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
+    }
+
+    .phone-frame {
+      position: relative;
+      background: #0f172a;
+      border-radius: 2.5rem;
+      padding: 10px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .phone-frame img {
+      border-radius: 1.25rem;
+      display: block;
+    }
+
+    .lang-ml {
+      font-family: 'Noto Sans Malayalam', sans-serif;
+      font-weight: 700;
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+
+      .slide {
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-bg text-slate-800 antialiased overflow-x-hidden relative selection:bg-teal-200 selection:text-teal-900"
+  x-data="{
+    scroll: 0,
+    lang: 'ml',
+    t: {
+      ml: {
+        badge: 'Complete Guide',
+        title: 'How to Use Oryoo',
+        subtitle: 'Clients, orders, payments എല്ലാം easy ആയി manage ചെയ്യാനുള്ള complete guide',
+      
+        step1: 'Step 1',
+        step2: 'Step 2',
+        step3: 'Step 3',
+        step45: 'Step 4 & 5',
+      
+        more: 'More',
+      
+        addingClients: 'Clients add ചെയ്യുക',
+        addingClientsDesc: 'Orders and payments track ചെയ്യാൻ clients add ചെയ്യണം. Clients tab open ചെയ്ത് Add Client click ചെയ്യുക.',
+        before: 'Before',
+        after: 'After',
+        addClientBefore: 'Notebooks, WhatsApp chats ൽ scattered contacts. ആര് എവിടെയാണ് എന്ന് കണ്ടെത്താൻ പ്രയാസം.',
+        addClientAfter: 'എല്ലാ clients ഒരേ ഇടത്ത്. Search ചെയ്ത് വേഗം കണ്ടെത്താം. Orders, payments എല്ലാം link ആയി.',
+      
+        addClient1: 'Bottom navigation ൽ നിന്ന് Clients tab open ചെയ്യുക',
+        addClient2: '+ Add Client button tap ചെയ്യുക',
+        addClient3: 'Name, email, phone number, address fill ചെയ്യുക',
+        addClient4: 'Optional ആയി status (Active / Inactive) and tags (VIP, Regular, Premium, New) set ചെയ്യാം',
+        addClient5: 'Save tap ചെയ്താൽ client add ആവും',
+      
+        createOrder: 'Order create ചെയ്യുക',
+        createOrderDesc: 'Client ന് വേണ്ടി items, quantity, delivery details എല്ലാം add ചെയ്ത് order create ചെയ്യാം.',
+        createOrderBefore: 'Notebooks, Excel, WhatsApp ൽ manual orders. Duplicate entries, mistakes, confusion.',
+        createOrderAfter: 'Clean orders app ൽ. Client നോട് link ആയി. Items, delivery date, address എല്ലാം organized.',
+      
+        createOrder1: 'Orders tab open ചെയ്ത് Create Order tap ചെയ്യുക',
+        createOrder2: 'Client list ൽ നിന്ന് ഒരു client select ചെയ്യുക',
+        createOrder3: 'Order items add ചെയ്യുക: name, description, price, quantity',
+        createOrder4: 'Delivery dateയും delivery addressും set ചെയ്യുക',
+        createOrder5: 'Review ചെയ്ത് Create Order tap ചെയ്യുക',
+      
+        recordPayment: 'Payment record ചെയ്യുക',
+        recordPaymentDesc: 'Client ൽ നിന്ന് കിട്ടിയ payments easy ആയി track ചെയ്യാം. Correct records വേണ്ടി orderുമായി link ചെയ്യുന്നത് നല്ലതാണ്.',
+        recordPaymentBefore: 'ആർക്ക് എത്ര paid ചെയ്തു എന്ന് മറക്കും. Notebooks messy. Outstanding balance കണ്ടെത്താൻ പ്രയാസം.',
+        recordPaymentAfter: 'എല്ലാ payments ഒരേ ഇടത്ത്. Order നോട് link. Outstanding balance auto calculate ആവും.',
+      
+        recordPayment1: 'Pay tab open ചെയ്ത് Record Payment tap ചെയ്യുക',
+        recordPayment2: 'Client and order (ഉണ്ടെങ്കിൽ) select ചെയ്യുക',
+        recordPayment3: 'Payment amount enter ചെയ്യുക',
+        recordPayment4: 'Payment method select ചെയ്യുക: UPI, Bank Transfer, Credit Card, Cash, Cheque',
+        recordPayment5: 'Notes add ചെയ്ത് Record Payment tap ചെയ്യുക',
+      
+        shareMessage: 'Message and Invoice share ചെയ്യുക',
+        shareMessageDesc: 'Order details ൽ നിന്ന് direct ആയി WhatsApp message share ചെയ്യാം അല്ലെങ്കിൽ PDF invoice generate ചെയ്ത് share ചെയ്യാം.',
+        shareMessageBefore: 'Order details manually type ചെയ്ത് WhatsApp ൽ paste. PDF invoice create ചെയ്യാൻ പ്രയാസം.',
+        shareMessageAfter: 'One-tap WhatsApp share — message auto fill ആവും. PDF invoice ready. Professional look.',
+      
+        shareMessage1: 'Orders tab ൽ നിന്ന് ഒരു order open ചെയ്യുക',
+        shareMessage2: 'Share Order Details tap ചെയ്യുക → WhatsApp message auto open ആവും',
+        shareMessage3: 'Share Invoice (PDF) tap ചെയ്യുക → PDF generate ആയി WhatsApp / Email വഴി share ചെയ്യാം',
+        shareMessage4: 'WhatsApp share ചെയ്യാൻ client ന് phone number വേണം',
+      
+        moreFeatures: 'More Features',
+        moreFeaturesDesc: 'Product catalog, payment receipts, business profile, WhatsApp templates.',
+      
+        productCatalog: 'Product Catalog',
+        productCatalogDesc: 'Products add ചെയ്ത് orders create ചെയ്യുമ്പോൾ catalog ൽ നിന്ന് select ചെയ്യാം.',
+      
+        paymentReceipts: 'Payment Receipts',
+        paymentReceiptsDesc: 'Payment detail screen ൽ നിന്ന് receipt (PDF) share ചെയ്യാം.',
+      
+        businessProfile: 'Business Profile',
+        businessProfileDesc: 'Settings ൽ business name, address, branding edit ചെയ്യാം.',
+      
+        whatsappTemplates: 'WhatsApp Templates',
+        whatsappTemplatesDesc: 'Settings ൽ order & payment message templates ready ആക്കി വെക്കാം.',
+      
+        allSet: 'You\'re All Set!',
+        allSetDesc: 'Start adding clients, creating orders, and managing payments with Oryoo.',
+      
+        tagline: 'Oryoo — Simplify your business',
+        downloadApp: 'Download App',
+        backToHome: 'Back to Home',
+      
+        features: 'Features',
+        pricing: 'Pricing',
+        getApp: 'Get App',
+        guideNav: 'ഗൈഡ്',
+        jumpTo: 'ഇവിടെയെത്തുക'
+      },
+      en: {
+        badge: 'Complete Guide',
+        title: 'How to Use Oryoo',
+        subtitle: 'A complete guide to managing clients, orders, payments, and more',
+        step1: 'Step 1',
+        step2: 'Step 2',
+        step3: 'Step 3',
+        step45: 'Step 4 & 5',
+        more: 'More',
+        addingClients: 'Adding Clients',
+        addingClientsDesc: 'Add your customers to manage orders and payments. Go to the Clients tab and tap the add button.',
+        before: 'Before',
+        after: 'After',
+        addClientBefore: 'Contacts scattered in notebooks and WhatsApp chats. Hard to find who\'s who.',
+        addClientAfter: 'All clients in one place. Search and find quickly. Orders and payments linked.',
+        addClient1: 'Open the Clients tab from the bottom navigation',
+        addClient2: 'Tap the + Add Client button',
+        addClient3: 'Fill in: Name, Email, Phone, Address',
+        addClient4: 'Optionally set status (Active/Inactive) and tags (VIP, Regular, Premium, New)',
+        addClient5: 'Tap Save to add the client',
+        createOrder: 'Create Order',
+        createOrderDesc: 'Create orders for your clients with items, quantities, and delivery details.',
+        createOrderBefore: 'Manual orders in notebooks, Excel, WhatsApp. Duplicate entries, mistakes, confusion.',
+        createOrderAfter: 'Clean orders in the app. Linked to clients. Items, delivery date, address — all organized.',
+        createOrder1: 'Go to the Orders tab and tap Create Order',
+        createOrder2: 'Select a client from your client list',
+        createOrder3: 'Add order items: name, description, price, quantity',
+        createOrder4: 'Set delivery date and delivery address',
+        createOrder5: 'Review and tap Create Order',
+        recordPayment: 'Record Payment',
+        recordPaymentDesc: 'Track payments received from clients. Link payments to orders for accurate records.',
+        recordPaymentBefore: 'Forget who paid what. Messy notebooks. Hard to track outstanding balance.',
+        recordPaymentAfter: 'All payments in one place. Linked to orders. Outstanding balance auto-calculated.',
+        recordPayment1: 'Go to the Pay tab and tap Record Payment',
+        recordPayment2: 'Select the client and the order (if applicable)',
+        recordPayment3: 'Enter the payment amount',
+        recordPayment4: 'Choose payment method: UPI, Bank Transfer, Credit Card, Cash, Cheque',
+        recordPayment5: 'Add notes and tap Record Payment',
+        shareMessage: 'Share Message & Invoice',
+        shareMessageDesc: 'From Order Details, share order info via WhatsApp or generate and share a PDF invoice.',
+        shareMessageBefore: 'Manually type order details and paste in WhatsApp. Hard to create PDF invoices.',
+        shareMessageAfter: 'One-tap WhatsApp share — message auto-filled. PDF invoice ready. Professional look.',
+        shareMessage1: 'Open an order from the Orders tab',
+        shareMessage2: 'Tap Share Order Details → Opens WhatsApp with pre-filled message',
+        shareMessage3: 'Tap Share Invoice (PDF) → Generates PDF, share via WhatsApp/email',
+        shareMessage4: 'Client must have a phone number for WhatsApp sharing',
+        moreFeatures: 'More Features',
+        moreFeaturesDesc: 'Product catalog, payment receipts, business profile, and WhatsApp templates.',
+        productCatalog: 'Product Catalog',
+        productCatalogDesc: 'Add products and use From Catalog when creating orders.',
+        paymentReceipts: 'Payment Receipts',
+        paymentReceiptsDesc: 'Share receipt (PDF) from payment detail screen.',
+        businessProfile: 'Business Profile',
+        businessProfileDesc: 'Edit business name, address, branding in Settings.',
+        whatsappTemplates: 'WhatsApp Templates',
+        whatsappTemplatesDesc: 'Customize order & payment message templates in Settings.',
+        allSet: 'You\'re All Set!',
+        allSetDesc: 'Start adding clients, creating orders, and managing payments with Oryoo.',
+        tagline: 'Oryoo — Simplify your business',
+        downloadApp: 'Download App',
+        backToHome: 'Back to Home',
+        features: 'Features',
+        pricing: 'Pricing',
+        getApp: 'Get App',
+        guideNav: 'Guide',
+        jumpTo: 'Jump to'
+      }
+    }
+  }" x-init="lang = localStorage.getItem('oryoo-lang') || 'ml'"
+  @scroll.window="scroll = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100">
+
+  <div class="scroll-progress no-print" :style="'width: ' + scroll + '%'"></div>
+  <div class="bg-grain"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-4 sm:top-6 left-0 right-0 z-[60] flex justify-center px-4 no-print" data-aos="fade-down">
+    <div
+      class="glass-panel px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-3 sm:gap-6 shadow-lg shadow-black/5 transition hover:shadow-xl max-w-full">
+      <a href="../index.html" class="text-lg sm:text-xl font-bold text-teal-800 flex items-center gap-2 shrink-0">
+        <img src="../logo.svg" alt="Oryoo Logo" class="h-5 sm:h-6 w-5 sm:w-6 rounded-2xl object-contain">
+        Oryoo
+      </a>
+      <div class="flex items-center gap-1 bg-slate-100 rounded-full p-1 shrink-0">
+        <button @click="lang='ml'; localStorage.setItem('oryoo-lang','ml')"
+          :class="lang==='ml' ? 'bg-teal-600 text-white' : 'text-slate-600 hover:bg-slate-200'"
+          class="px-3 py-1 rounded-full text-xs font-semibold transition">മലയാളം</button>
+        <button @click="lang='en'; localStorage.setItem('oryoo-lang','en')"
+          :class="lang==='en' ? 'bg-teal-600 text-white' : 'text-slate-600 hover:bg-slate-200'"
+          class="px-3 py-1 rounded-full text-xs font-semibold transition">English</button>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="../index.html#features" class="hover:text-teal-600 transition" x-text="t[lang].features">Features</a>
+        <a href="../index.html#pricing" class="hover:text-teal-600 transition" x-text="t[lang].pricing">Pricing</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank" rel="noopener noreferrer"
+        class="app-download-link bg-teal-600 hover:bg-teal-700 text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition active:scale-95 shadow-lg shadow-teal-600/20 shrink-0"
+        x-text="t[lang].getApp">Get App</a>
+    </div>
+  </nav>
+
+  <main class="relative pt-24 sm:pt-28 pb-16 sm:pb-24">
+    <!-- Blob backgrounds -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden -z-10 pointer-events-none">
+      <div
+        class="absolute top-20 left-10 w-64 sm:w-96 h-64 sm:h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 sm:opacity-30 animate-pulse">
+      </div>
+      <div
+        class="absolute top-40 right-10 w-64 sm:w-96 h-64 sm:h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 sm:opacity-30 animate-pulse"
+        style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Slide 1: Hero -->
+    <section
+      class="slide min-h-[85vh] sm:min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-teal-100 text-teal-700 text-xs font-bold tracking-wide uppercase mb-6 shadow-sm"
+          :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].badge">Complete Guide</div>
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 mb-4 sm:mb-6 leading-tight"
+          :class="{ 'lang-ml': lang === 'ml' }">
+          <span x-show="lang === 'en'">How to Use <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-500">Oryoo</span></span>
+          <span x-show="lang === 'ml'"><span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-500">How</span> to
+            ഉപയോഗിക്കാം</span>
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-slate-500 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
+          :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].subtitle">A complete guide to managing clients, orders,
+          payments, and more</p>
+        <div class="flex justify-center">
+          <div class="phone-frame w-[260px] sm:w-[300px] md:w-[320px]">
+            <img src="screenshots/home.png" alt="Oryoo Home screen" class="w-full">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Adding Clients -->
+    <section id="step1" class="slide py-12 sm:py-20 px-4 sm:px-6 scroll-mt-32">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div data-aos="fade-right">
+            <span
+              class="inline-block px-4 py-1.5 rounded-full bg-teal-600 text-white text-xs font-bold uppercase tracking-wide mb-4"
+              :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].step1">Step 1</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].addingClients">Adding Clients</h2>
+            <p class="text-slate-500 mb-6 text-base sm:text-lg" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].addingClientsDesc">Add your customers to manage orders and payments. Go to the Clients tab
+              and tap the add button.</p>
+            <ul class="space-y-3 sm:space-y-4 mb-6">
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].addClient1"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].addClient2"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].addClient3"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].addClient4"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].addClient5"></span></li>
+            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200/80 shadow-lg shadow-amber-200/30 hover:shadow-xl hover:shadow-amber-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-amber-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/20 text-amber-700 text-lg">📒</span>
+                  <span class="text-xs font-bold text-amber-700 uppercase tracking-wider"
+                    x-text="t[lang].before">Before</span>
+                </div>
+                <p class="text-sm text-amber-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].addClientBefore"></p>
+              </div>
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-teal-50 to-emerald-50 border-2 border-teal-200/80 shadow-lg shadow-teal-200/30 hover:shadow-xl hover:shadow-teal-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-teal-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-500/20 text-teal-700 text-lg">✓</span>
+                  <span class="text-xs font-bold text-teal-700 uppercase tracking-wider"
+                    x-text="t[lang].after">After</span>
+                </div>
+                <p class="text-sm text-teal-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].addClientAfter"></p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center lg:justify-end" data-aos="fade-left">
+            <div class="phone-frame hover-tilt max-w-[280px] sm:max-w-[320px]">
+              <img src="screenshots/clients.png" alt="Clients screen" class="w-full">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Create Order -->
+    <section id="step2" class="slide py-12 sm:py-20 px-4 sm:px-6 scroll-mt-32">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div class="order-2 lg:order-1 flex justify-center lg:justify-start" data-aos="fade-right">
+            <div class="phone-frame hover-tilt max-w-[280px] sm:max-w-[320px]">
+              <img src="screenshots/create-order.png" alt="Create Order screen" class="w-full">
+            </div>
+          </div>
+          <div class="order-1 lg:order-2" data-aos="fade-left">
+            <span
+              class="inline-block px-4 py-1.5 rounded-full bg-teal-600 text-white text-xs font-bold uppercase tracking-wide mb-4"
+              :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].step2">Step 2</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].createOrder">Create Order</h2>
+            <p class="text-slate-500 mb-6 text-base sm:text-lg" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].createOrderDesc">Create orders for your clients with items, quantities, and delivery
+              details.</p>
+            <ul class="space-y-3 sm:space-y-4 mb-6">
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].createOrder1"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].createOrder2"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].createOrder3"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].createOrder4"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].createOrder5"></span></li>
+            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200/80 shadow-lg shadow-amber-200/30 hover:shadow-xl hover:shadow-amber-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-amber-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/20 text-amber-700 text-lg">📋</span>
+                  <span class="text-xs font-bold text-amber-700 uppercase tracking-wider"
+                    x-text="t[lang].before">Before</span>
+                </div>
+                <p class="text-sm text-amber-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].createOrderBefore"></p>
+              </div>
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-teal-50 to-emerald-50 border-2 border-teal-200/80 shadow-lg shadow-teal-200/30 hover:shadow-xl hover:shadow-teal-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-teal-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-500/20 text-teal-700 text-lg">✓</span>
+                  <span class="text-xs font-bold text-teal-700 uppercase tracking-wider"
+                    x-text="t[lang].after">After</span>
+                </div>
+                <p class="text-sm text-teal-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].createOrderAfter"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Record Payment -->
+    <section id="step3" class="slide py-12 sm:py-20 px-4 sm:px-6 scroll-mt-32">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div data-aos="fade-right">
+            <span
+              class="inline-block px-4 py-1.5 rounded-full bg-teal-600 text-white text-xs font-bold uppercase tracking-wide mb-4"
+              :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].step3">Step 3</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].recordPayment">Record Payment</h2>
+            <p class="text-slate-500 mb-6 text-base sm:text-lg" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].recordPaymentDesc">Track payments received from clients. Link payments to orders for
+              accurate records.</p>
+            <ul class="space-y-3 sm:space-y-4 mb-6">
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].recordPayment1"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].recordPayment2"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].recordPayment3"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].recordPayment4"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].recordPayment5"></span></li>
+            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200/80 shadow-lg shadow-amber-200/30 hover:shadow-xl hover:shadow-amber-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-amber-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/20 text-amber-700 text-lg">💵</span>
+                  <span class="text-xs font-bold text-amber-700 uppercase tracking-wider"
+                    x-text="t[lang].before">Before</span>
+                </div>
+                <p class="text-sm text-amber-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].recordPaymentBefore"></p>
+              </div>
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-teal-50 to-emerald-50 border-2 border-teal-200/80 shadow-lg shadow-teal-200/30 hover:shadow-xl hover:shadow-teal-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-teal-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-500/20 text-teal-700 text-lg">✓</span>
+                  <span class="text-xs font-bold text-teal-700 uppercase tracking-wider"
+                    x-text="t[lang].after">After</span>
+                </div>
+                <p class="text-sm text-teal-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].recordPaymentAfter"></p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center lg:justify-end" data-aos="fade-left">
+            <div class="phone-frame hover-tilt max-w-[280px] sm:max-w-[320px]">
+              <img src="screenshots/record-payment.png" alt="Record Payment screen" class="w-full">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Share Message & Invoice -->
+    <section id="step45" class="slide py-12 sm:py-20 px-4 sm:px-6 scroll-mt-32">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div class="order-2 lg:order-1 flex justify-center lg:justify-start" data-aos="fade-right">
+            <div class="phone-frame hover-tilt max-w-[280px] sm:max-w-[320px]">
+              <img src="screenshots/share-invoice.png" alt="Share Invoice screen" class="w-full">
+            </div>
+          </div>
+          <div class="order-1 lg:order-2" data-aos="fade-left">
+            <span
+              class="inline-block px-4 py-1.5 rounded-full bg-teal-600 text-white text-xs font-bold uppercase tracking-wide mb-4"
+              :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].step45">Step 4 & 5</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].shareMessage">Share Message & Invoice</h2>
+            <p class="text-slate-500 mb-6 text-base sm:text-lg" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].shareMessageDesc">From Order Details, share order info via WhatsApp or generate and share
+              a PDF invoice.</p>
+            <ul class="space-y-3 sm:space-y-4 mb-6">
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].shareMessage1"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].shareMessage2"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].shareMessage3"></span></li>
+              <li class="flex items-start gap-3 pl-0"><span
+                  class="mt-1.5 w-3 h-3 rounded-full bg-teal-500 flex-shrink-0 block shadow-sm shadow-teal-500/30"></span><span
+                  :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].shareMessage4"></span></li>
+            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200/80 shadow-lg shadow-amber-200/30 hover:shadow-xl hover:shadow-amber-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-amber-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/20 text-amber-700 text-lg">✏️</span>
+                  <span class="text-xs font-bold text-amber-700 uppercase tracking-wider"
+                    x-text="t[lang].before">Before</span>
+                </div>
+                <p class="text-sm text-amber-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].shareMessageBefore"></p>
+              </div>
+              <div
+                class="group relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-teal-50 to-emerald-50 border-2 border-teal-200/80 shadow-lg shadow-teal-200/30 hover:shadow-xl hover:shadow-teal-200/40 hover:-translate-y-0.5 transition-all duration-300">
+                <div
+                  class="absolute top-0 right-0 w-24 h-24 bg-teal-200/20 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="relative flex items-center gap-2 mb-3">
+                  <span
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-500/20 text-teal-700 text-lg">✓</span>
+                  <span class="text-xs font-bold text-teal-700 uppercase tracking-wider"
+                    x-text="t[lang].after">After</span>
+                </div>
+                <p class="text-sm text-teal-900/90 leading-relaxed" :class="{ 'lang-ml': lang === 'ml' }"
+                  x-text="t[lang].shareMessageAfter"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: More Features -->
+    <section id="more" class="slide py-12 sm:py-20 px-4 sm:px-6 scroll-mt-32">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <span
+            class="inline-block px-4 py-1.5 rounded-full bg-slate-800 text-white text-xs font-bold uppercase tracking-wide mb-4"
+            :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].more">More</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+            x-text="t[lang].moreFeatures">More Features</h2>
+          <p class="text-slate-500 text-base sm:text-lg max-w-2xl mx-auto" :class="{ 'lang-ml': lang === 'ml' }"
+            x-text="t[lang].moreFeaturesDesc">Product catalog, payment receipts, business profile, and WhatsApp
+            templates.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="glass-panel p-6 rounded-2xl shadow-lg hover:shadow-xl hover-tilt transition" data-aos="fade-up">
+            <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-2xl mb-4">📦</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].productCatalog">Product Catalog</h3>
+            <p class="text-slate-500 text-sm mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].productCatalogDesc">Add products and use "From Catalog" when creating orders.</p>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+              <div class="flex items-center justify-between gap-2">
+                <div>
+                  <div class="font-semibold text-slate-900 text-sm">Custom Shirt</div>
+                  <div class="text-xs text-slate-500">Premium cotton</div>
+                </div>
+                <div class="font-bold text-teal-600">₹750</div>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl shadow-lg hover:shadow-xl hover-tilt transition" data-aos="fade-up"
+            data-aos-delay="50">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl mb-4">📄</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].paymentReceipts">Payment Receipts</h3>
+            <p class="text-slate-500 text-sm mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].paymentReceiptsDesc">Share receipt (PDF) from payment detail screen.</p>
+            <div class="bg-green-50 rounded-xl p-3 border border-green-100 flex items-center justify-between">
+              <span class="font-semibold text-slate-900 text-sm">Share Receipt (PDF)</span>
+              <span class="text-green-600">›</span>
+            </div>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl shadow-lg hover:shadow-xl hover-tilt transition" data-aos="fade-up"
+            data-aos-delay="100">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-4">🏢</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].businessProfile">Business Profile</h3>
+            <p class="text-slate-500 text-sm mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].businessProfileDesc">Edit business name, address, branding in Settings.</p>
+            <div class="space-y-2 text-sm text-slate-600">
+              <div class="flex items-center gap-2 py-2 border-b border-slate-100">🏢 Business Profile</div>
+              <div class="flex items-center gap-2 py-2 border-b border-slate-100">📄 Customize PDF</div>
+              <div class="flex items-center gap-2 py-2">🔒 Security</div>
+            </div>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl shadow-lg hover:shadow-xl hover-tilt transition" data-aos="fade-up"
+            data-aos-delay="150">
+            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-2xl mb-4">📱</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].whatsappTemplates">WhatsApp Templates</h3>
+            <p class="text-slate-500 text-sm mb-4" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].whatsappTemplatesDesc">Customize order & payment message templates in Settings.</p>
+            <div class="bg-emerald-50 rounded-xl p-3 border border-emerald-100">
+              <div class="text-xs font-semibold text-emerald-700">📱 Order Created</div>
+              <div class="text-xs text-slate-500 mt-1">Hello {client_name}, order {order_number}...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Thank You -->
+    <section class="slide py-16 sm:py-24 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div
+          class="bg-slate-900 rounded-[2rem] sm:rounded-[3rem] p-12 sm:p-16 lg:p-20 text-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+          </div>
+          <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-teal-500 rounded-full opacity-10 filter blur-3xl"></div>
+          <div class="absolute -right-10 -top-10 w-40 h-40 bg-purple-500 rounded-full opacity-10 filter blur-3xl"></div>
+          <div class="relative z-10">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4"
+              :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].allSet">You're All Set!</h2>
+            <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-xl mx-auto" :class="{ 'lang-ml': lang === 'ml' }"
+              x-text="t[lang].allSetDesc">Start adding clients, creating orders, and managing payments with Oryoo.</p>
+            <div class="flex justify-center mb-8">
+              <img src="../logo.svg" alt="Oryoo" class="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-2xl">
+            </div>
+            <p class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-400"
+              :class="{ 'lang-ml': lang === 'ml' }" x-text="t[lang].tagline">Oryoo — Simplify your business</p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="https://play.google.com/store/apps/details?id=com.oryoo.app" target="_blank"
+                rel="noopener noreferrer"
+                class="app-download-link inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-full font-bold hover:bg-teal-50 transition"
+                x-text="t[lang].downloadApp">Download App</a>
+              <a href="../index.html"
+                class="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded-full font-bold hover:bg-white/20 transition border border-white/20"
+                x-text="t[lang].backToHome">Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black pt-12 pb-8 text-center relative overflow-hidden text-white no-print">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 via-purple-500 to-teal-500"></div>
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+      <div
+        class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm gap-4">
+        <div class="font-black text-2xl text-white tracking-tighter">ORYOO</div>
+        <div class="flex flex-wrap justify-center gap-6 md:gap-8 font-medium">
+          <a href="#step1" class="hover:text-teal-400 transition hover:underline">Guide</a>
+          <a href="../privacy-policy.html" class="hover:text-teal-400 transition hover:underline">Privacy</a>
+          <a href="../terms-and-conditions.html" class="hover:text-teal-400 transition hover:underline">Terms</a>
+          <a href="../contact-support.html" class="hover:text-teal-400 transition hover:underline">Contact Us</a>
+          <a href="../index.html" class="hover:text-teal-400 transition hover:underline">Home</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Made with</span>
+          <span class="text-red-500 animate-pulse">❤</span>
+          <span>in India 🇮🇳</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ once: true, offset: 50, duration: 600, easing: 'ease-out-cubic' });
+    (function () {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      var storeUrl = isAndroid ? 'https://play.google.com/store/apps/details?id=com.oryoo.app' : 'https://apps.apple.com/in/app/oryoo/id6759499821';
+      document.querySelectorAll('.app-download-link').forEach(function (link) {
+        link.href = storeUrl;
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -51,25 +51,39 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 
 <body class="bg-bg text-slate-800 antialiased overflow-x-hidden relative selection:bg-teal-200 selection:text-teal-900"
     x-data="{ 
         submitted: false,
+        loading: false,
+        error: '',
+        formspreeEndpoint: 'https://formspree.io/f/xeerzrvz',
         formData: {
             name: '',
             email: '',
             subject: '',
             message: ''
         },
-        submitForm() {
-            // Simulate form submission
-            this.submitted = true;
-            // Reset form after showing success
-            setTimeout(() => {
+        async submitForm() {
+            this.error = '';
+            this.loading = true;
+            try {
+                const res = await fetch(this.formspreeEndpoint, {
+                    method: 'POST',
+                    body: JSON.stringify(this.formData),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                if (!res.ok) throw new Error('Something went wrong. Please try again.');
+                this.submitted = true;
                 this.formData = { name: '', email: '', subject: '', message: '' };
-            }, 3000);
+            } catch (e) {
+                this.error = e.message || 'Failed to send. Please try again or email us directly.';
+            } finally {
+                this.loading = false;
+            }
         }
     }">
 
@@ -137,8 +151,8 @@
                                 </div>
                                 <div>
                                     <div class="font-semibold text-slate-900 mb-1">Email</div>
-                                    <a href="mailto:mailhi@oryoo.in"
-                                        class="text-teal-600 hover:text-teal-700 transition">mailhi@oryoo.in</a>
+                                    <a href="mailto:hi@oryoo.in"
+                                        class="text-teal-600 hover:text-teal-700 transition">hi@oryoo.in</a>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
@@ -164,6 +178,7 @@
                 <div class="lg:col-span-2">
                     <div class="glass-panel p-8 rounded-2xl shadow-lg" x-show="!submitted">
                         <h3 class="text-2xl font-bold text-slate-900 mb-6">Send us a Message</h3>
+                        <p x-show="error" x-text="error" class="text-red-600 text-sm font-medium mb-4 bg-red-50 px-4 py-3 rounded-xl"></p>
                         <form @submit.prevent="submitForm()" class="space-y-6">
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div>
@@ -195,9 +210,10 @@
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition bg-white resize-none"
                                     placeholder="Tell us how we can help you..."></textarea>
                             </div>
-                            <button type="submit"
-                                class="w-full py-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold text-lg transition transform hover:scale-[1.02] active:scale-100 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
-                                Submit Support Request
+                            <button type="submit" :disabled="loading"
+                                class="w-full py-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-70 disabled:cursor-not-allowed text-white rounded-xl font-bold text-lg transition transform hover:scale-[1.02] active:scale-100 shadow-lg shadow-teal-600/20 hover:shadow-teal-500/40">
+                                <span x-show="!loading">Submit Support Request</span>
+                                <span x-show="loading" x-cloak>Sending...</span>
                             </button>
                         </form>
                     </div>
